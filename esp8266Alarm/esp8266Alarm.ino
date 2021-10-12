@@ -1,4 +1,6 @@
 int esp8266Led = 02; // é uma constante que indica o LED do ESP8266
+int rele1 = 05;
+int rele2 = 04;
 
 void setup()
 {
