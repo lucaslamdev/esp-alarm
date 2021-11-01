@@ -13,3 +13,16 @@ void loop()
   digitalWrite(esp8266Led, HIGH);
   delay(500);
 }
+
+void tocarAlarme()
+{
+  digitalWrite(rele1, HIGH);
+  digitalWrite(rele2, HIGH);
+}
+
+
+void desligarAlarme()
+{
+  digitalWrite(rele1, LOW);
+  digitalWrite(rele2, LOW);
+}
