@@ -72,7 +72,7 @@ bool rotinaAlarmeLigado()
     distancia = ultrasonic.Ranging(CM);
     Serial.print("Distância: ");
     Serial.println(distancia);
-    delay(50);
+    delay(100);
     medidas[i] = distancia;
   }
 
