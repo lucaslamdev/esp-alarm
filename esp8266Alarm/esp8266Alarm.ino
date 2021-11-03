@@ -1,16 +1,15 @@
 #include <Ultrasonic.h>
 #include <SPI.h>
 #include <MFRC522.h>
-#include <LiquidCrystal.h>
 
-#define LED 16         // D0 Proprio led da placa
-#define SDA_PIN 4      // D2
-#define RST_PIN 9      // D4
-#define MOSI 13        // D7
-#define MISO 12        // D6
-#define SCK 14         // D5
-#define pino_trigger 0 // D3
-#define pino_echo 5    // D1
+#define LED LED_BUILTIN // D0 Proprio led da placa
+#define SDA_PIN 4       // D2
+#define RST_PIN 9       // D4
+#define MOSI 13         // D7
+#define MISO 12         // D6
+#define SCK 14          // D5
+#define pino_trigger 0  // D3
+#define pino_echo 5     // D1
 Ultrasonic ultrasonic(pino_trigger, pino_echo);
 MFRC522 mfrc522(SDA_PIN, RST_PIN); // Create MFRC522 instance.
 
@@ -21,6 +20,7 @@ bool disparo = false;
 
 void setup()
 {
+  pinMode(LED_BUILTIN, OUTPUT);
   Serial.begin(9600);
   SPI.begin();
   mfrc522.PCD_Init();
