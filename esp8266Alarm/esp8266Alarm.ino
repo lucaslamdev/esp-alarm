@@ -27,7 +27,13 @@ void setup()
   pinMode(porta_rele1, OUTPUT);
   alarme_status = false;
   mfrc522.PCD_DumpVersionToSerial();
-  delay(10000);
+  delay(1000);
+  digitalWrite(LED, HIGH);
+  delay(100);
+  digitalWrite(LED, LOW);
+  delay(1000);
+  digitalWrite(LED, HIGH);
+  delay(500);
   Serial.println("Aproxime o seu cartao do leitor...");
 }
 
