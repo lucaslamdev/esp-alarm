@@ -1,3 +1,4 @@
+
 #include <Ultrasonic.h>
 #include <SPI.h>
 #include <MFRC522.h>
@@ -10,11 +11,12 @@
 #define SCK 14         // D5
 #define pino_trigger 0 // D3
 #define pino_echo 5    // D1
+#define porta_rele1 15 // D8
 Ultrasonic ultrasonic(pino_trigger, pino_echo);
 MFRC522 mfrc522(SDA_PIN, RST_PIN); // Create MFRC522 instance.
 
 long distancia;
-int porta_rele1 = 15; // D8
+
 bool alarme_status = false;
 bool disparo = false;
 
