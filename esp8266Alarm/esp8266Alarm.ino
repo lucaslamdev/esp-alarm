@@ -2,14 +2,14 @@
 #include <SPI.h>
 #include <MFRC522.h>
 
-#define LED LED_BUILTIN // D0 Proprio led da placa
-#define SDA_PIN 4       // D2
-#define RST_PIN 9       // D4
-#define MOSI 13         // D7
-#define MISO 12         // D6
-#define SCK 14          // D5
-#define pino_trigger 0  // D3
-#define pino_echo 5     // D1
+#define LED 16 // LED_BUILTIN Proprio led da placa
+#define SDA_PIN 4      // D2
+#define RST_PIN 2      // D4
+#define MOSI 13        // D7
+#define MISO 12        // D6
+#define SCK 14         // D5
+#define pino_trigger 0 // D3
+#define pino_echo 5    // D1
 Ultrasonic ultrasonic(pino_trigger, pino_echo);
 MFRC522 mfrc522(SDA_PIN, RST_PIN); // Create MFRC522 instance.
 
@@ -21,10 +21,10 @@ bool disparo = false;
 void setup()
 {
   pinMode(LED, OUTPUT);
+  pinMode(porta_rele1, OUTPUT);
   Serial.begin(9600);
   SPI.begin();
-  mfrc522.PCD_Init();
-  pinMode(porta_rele1, OUTPUT);
+  mfrc522.PCD_Init(); 
   alarme_status = false;
   mfrc522.PCD_DumpVersionToSerial();
   delay(1000);
@@ -64,15 +64,16 @@ void loop()
 
 bool rotinaAlarmeLigado()
 {
+  digitalWrite(LED, HIGH);
   Serial.println("Alarme ligado.");
-  delay(500);
+  delay(200);
   long medidas[3];
   for (int i = 0; i < 3; i++)
   {
     distancia = ultrasonic.Ranging(CM);
     Serial.print("Distância: ");
     Serial.println(distancia);
-    delay(100);
+    delay(150);
     medidas[i] = distancia;
   }
 
@@ -87,9 +88,9 @@ bool rotinaAlarmeLigado()
 
 void rotinaAlarmeDesligado()
 {
-  delay(800);
+  delay(1000);
   digitalWrite(LED, HIGH);
-  delay(800);
+  delay(1000);
   digitalWrite(LED, LOW);
   desligarAlarme();
 }
