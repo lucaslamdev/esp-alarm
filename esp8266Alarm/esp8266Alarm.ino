@@ -20,7 +20,7 @@ bool disparo = false;
 
 void setup()
 {
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(LED, OUTPUT);
   Serial.begin(9600);
   SPI.begin();
   mfrc522.PCD_Init();
