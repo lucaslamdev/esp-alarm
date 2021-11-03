@@ -28,12 +28,6 @@ void setup()
   alarme_status = false;
   mfrc522.PCD_DumpVersionToSerial();
   delay(1000);
-  digitalWrite(LED, HIGH);
-  delay(100);
-  digitalWrite(LED, LOW);
-  delay(1000);
-  digitalWrite(LED, HIGH);
-  delay(500);
   Serial.println("Aproxime o seu cartao do leitor...");
 }
 
