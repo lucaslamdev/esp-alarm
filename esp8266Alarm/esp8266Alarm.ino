@@ -3,7 +3,7 @@
 #include <SPI.h>
 #include <MFRC522.h>
 
-#define LED 16 // LED_BUILTIN Proprio led da placa
+#define LED 16 // D0 Proprio led da placa
 #define SDA_PIN 4      // D2
 #define RST_PIN 2      // D4
 #define MOSI 13        // D7
@@ -26,7 +26,7 @@ void setup()
   pinMode(porta_rele1, OUTPUT);
   Serial.begin(9600);
   SPI.begin();
-  mfrc522.PCD_Init(); 
+  mfrc522.PCD_Init();
   alarme_status = false;
   mfrc522.PCD_DumpVersionToSerial();
   delay(1000);
@@ -69,17 +69,16 @@ bool rotinaAlarmeLigado()
   digitalWrite(LED, HIGH);
   Serial.println("Alarme ligado.");
   delay(200);
-  long medidas[3];
-  for (int i = 0; i < 3; i++)
+  long medidas[10];
+  for (int i = 0; i < 10; i++)
   {
     distancia = ultrasonic.Ranging(CM);
     Serial.print("Distância: ");
     Serial.println(distancia);
-    delay(150);
+    delay(100);
     medidas[i] = distancia;
   }
-
-  if (medidas[0] > 10 && medidas[1] > 10 && medidas[2] > 10)
+  if (medidas[0] > 12 && medidas[1] > 12 && medidas[2] > 12 && medidas[3] > 12 && medidas[4] > 12 && medidas[5] > 12 && medidas[6] > 12 && medidas[7] > 12 && medidas[8] > 12 && medidas[9] > 12)
   {
     disparo = true;
     tocarAlarme();
@@ -90,11 +89,11 @@ bool rotinaAlarmeLigado()
 
 void rotinaAlarmeDesligado()
 {
+  desligarAlarme();
   delay(1000);
   digitalWrite(LED, HIGH);
   delay(1000);
   digitalWrite(LED, LOW);
-  desligarAlarme();
 }
 
 void tocarAlarme()
